@@ -1,5 +1,8 @@
 // YOUR CODE HERE:
 // $(document).ready(function(){
+
+
+
   var app = {
     server: 'https://api.parse.com/1/classes/chatterbox',
     username: 'marlon',
@@ -9,7 +12,7 @@
     init: function(){
       // set interval to listen for server
       app.fetch()
-      setInterval(app.fetch, 10000); 
+      setInterval(app.fetch, 10000);
       // listen for click on #submit
       $(document).on("click", '#send',app.handleSubmit)
 
@@ -69,7 +72,7 @@
           console.log(this);
           console.log(data)
 
-          /*data = {results: [{ 
+          /*data = {results: [{
             createdAt:
             objectId:
             opoonents:
@@ -98,7 +101,7 @@
           // See: https://developer.mozilla.org/en-US/docs/Web/API/console.error
           console.error('chatterbox: Failed to send message', data);
         }
-      });      
+      });
 
     },
 
@@ -107,9 +110,20 @@
     },
 
     addMessage:function(obj){
-      app.roomname = obj.roomname;
-      var $message = '<div class="username">' + obj.username + ': '+ obj.text /*+"---"+ moment(obj.createdAt).startOf('minute').fromNow() + '*/+'</div>'
-      $('#chats').prepend($message)
+
+      function escapeHtml(username, text) {
+          var div = document.createElement('div');
+          div.appendChild(document.createTextNode(username + ': ' + text));
+          return div.innerHTML;
+      }
+
+
+      // app.roomname = obj.roomname;
+      // var $message = 'class="username">' + obj.username + ': '+ obj.text
+      console.log('adding message')
+      $('#chats').prepend("<br />")
+      $('#chats').prepend(escapeHtml(obj.username, obj.text))
+
     },
 
     addRoom:function(room){
@@ -132,7 +146,7 @@
       }
       app.send(message)
     },
-  
+
   }
 
   app.init();

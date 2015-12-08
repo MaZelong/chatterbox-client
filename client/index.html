@@ -7,6 +7,10 @@
 
     <!-- dependencies -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
+
+    <script type="text/javascript" src="bower_components/underscore/underscore.js"></script>
+    <script type="text/javascript" src="bower_components/moment/moment.js"></script>
+
     <!-- your scripts -->
     <script src="env/config.js"></script>
     <script src="scripts/app.js"></script>
@@ -15,7 +19,18 @@
     <div id="main">
       <h1>chatterbox</h1>
       <!-- Your HTML goes here! -->
+      <!-- 
+      input, submit button
+      chatrooms select menu
+      show messages -->
+      <select id="roomSelect">
+      </select>
+      <input type="text" id="room" value="add room">
+      <input type="submit" id="roomSubmit" value="submit">
+      <br />
+      <input type="text" id="message" class="message" name="input" value="type here">
+      <input type="submit" id="send" class="submit" value="submit">
+      <div id="chats" width="250" height ="300"></div>
     </div>
-    <div id="chats"></div>
   </body>
 </html>

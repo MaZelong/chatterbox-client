@@ -58,6 +58,7 @@ describe('chatterbox', function() {
       });
 
       it('should submit a GET request via $.ajax', function(done){
+        //debugger;
         app.fetch();
         expect($.ajax.calledOnce).to.be.true;
         ajaxUrl = typeof $.ajax.args[0][0] === 'string' ? $.ajax.args[0][0] : $.ajax.args[0][0].url;
@@ -106,7 +107,7 @@ describe('chatterbox', function() {
 
         app.init();
 
-        $('#main').find('.username').trigger('click');
+        $('.username').trigger('click');
         expect(app.addFriend.called).to.be.true;
 
         app.addFriend.restore();
@@ -119,9 +120,8 @@ describe('chatterbox', function() {
 
         app.init();
 
-        $('#send .submit').trigger('submit');
+        $('#send').trigger('click');
         expect(app.handleSubmit.calledOnce).to.be.true;
-
         app.handleSubmit.restore();
       });
     });
